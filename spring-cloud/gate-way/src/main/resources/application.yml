@@ -1,0 +1,32 @@
+#gateway项目不需要存在controller类型，如果存在controller类就是默认成不是gateway项目，
+  #直接请求到该项目中的相关路径
+#
+#
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: weight_low
+          uri: http://www.baidu.com
+          predicates:
+            #- Weight=group1, 2
+            - Path=/produce/detail
+        #- id: weight_high
+         # uri: http://127.0.0.1:8070/produce/detail
+          #predicates:
+            #- Weight=group1, 8
+           # - Path=/produce_gateway/detail
+            #- After=2021-01-19T15:10:47.789+08:00[Asia/Shanghai]
+            #- Method=POST
+            #- Path=/produce/**
+            #start green=red&red=red
+            #- Query=green,red
+            #- Query=red,red
+            #end green=red&red=red
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+server:
+  port: 8090
