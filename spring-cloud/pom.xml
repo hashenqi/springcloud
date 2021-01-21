@@ -12,6 +12,8 @@
         <module>gate-way</module>
         <module>client</module>
         <module>eureka-server</module>
+        <module>provider1</module>
+        <module>provider2</module>
     </modules>
 
     <parent>

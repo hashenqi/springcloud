@@ -1,7 +1,10 @@
 package com.czy.cloud.client.controlller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @ClassName ProduceController
@@ -13,9 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/produce")
 public class ProduceController {
 
+    private static final String urlPrex = "http://";
+
+    private static final String productId = "provider/product/getId";
+
+    @Autowired
+    private RestTemplate restTemplate;
+
     @RequestMapping("/detail")
     public String detail(){
-        return "client成功";
+        ResponseEntity<String> forEntity = restTemplate.getForEntity(urlPrex + productId, String.class);
+        return forEntity.getBody();
     }
 
     @RequestMapping("/detail2")
